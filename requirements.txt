@@ -1,0 +1,5 @@
+# This project is implemented in C and has no Python runtime dependencies.
+# Build requirements (commented):
+# - gcc
+# - make
+# - Linux kernel headers matching your system
