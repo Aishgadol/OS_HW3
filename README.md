@@ -33,10 +33,11 @@ loading and unloading the module are provided.
 ## Installation & Prerequisites
 1. Ensure you have kernel headers and build tools installed. Update the
    `KERNELDIR` path inside `Makefile` if necessary.
-2. Compile the module and test program:
+2. Compile the module, the interactive test program and the simple reader:
    ```bash
    make            # builds encdec.o
    gcc test.c -o test
+   gcc reader.c -o reader
    ```
 3. (Optional) Set executable permission on helper scripts:
    ```bash
@@ -60,6 +61,19 @@ Common commands within the tester include:
   return raw bytes or decrypted text.
 - `write <fd_index> "text"` and `read <fd_index> <count>` – perform I/O.
 - `lseek <fd_index> <pos>` – set the file position.
+
+### Simple Reader Utility
+An additional example program `reader.c` is provided for quickly reading data
+from one of the encdec devices without using the interactive tester. Compile it
+with:
+```bash
+gcc reader.c -o reader
+```
+Example usage reading 20 decrypted bytes from `/dev/encdec0` using key `4`:
+```bash
+./reader /dev/encdec0 20 --key 4 --decrypt
+```
+It supports the `--raw` flag to read encrypted bytes instead.
 
 To unload the module and clean device nodes:
 ```bash
